@@ -5,14 +5,13 @@
 package com.mycompany.mavenproject1;
 
 import com.mycompany.entity.Details;
-import javax.persistence.Entity;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  *
@@ -21,10 +20,12 @@ import org.apache.wicket.model.PropertyModel;
 public class Home extends WebPage {
 
     private static Logger LOG = Logger.getLogger(Home.class);
-
     
+   
+    private Details details;
+
     public Home() {
-        Details details=new Details();
+        details = new Details();
         setDefaultModel(new CompoundPropertyModel(details));
         Form form = new Form("form") {
             @Override
@@ -37,7 +38,7 @@ public class Home extends WebPage {
         form.add(new Label("msg", "Hello"));
         form.add(new TextField("Name"));
         form.add(new TextField("tel"));
-        
+
         LOG.debug("End");
 
     }
