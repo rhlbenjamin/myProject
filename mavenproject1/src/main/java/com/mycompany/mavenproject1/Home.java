@@ -20,26 +20,33 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 public class Home extends WebPage {
 
     private static Logger LOG = Logger.getLogger(Home.class);
-    
-   
+    private static final long serialVersionUID = 1L;
+    @SpringBean
     private Details details;
 
     public Home() {
         details = new Details();
         setDefaultModel(new CompoundPropertyModel(details));
-        Form form = new Form("form") {
+        final TextField<String> uname = new TextField<String>("Name");
+        final TextField<Integer> telNo = new TextField<Integer>("tel");
+        Form<Details> form = new Form<Details>("form", new CompoundPropertyModel<Details>(details)) {
             @Override
             protected void onSubmit() {
-                LOG.debug("Form Submited");
+                LOG.debug("On Submit Method");
+                String uNameValue = uname.getModelObject();
+                int telNoValue = telNo.getModelObject();
+                details.setName(uNameValue);
+                details.setTel(telNoValue);
+                LOG.debug("Name:" + details.getName() + " TelNo:" + details.getTel());
             }
         };
         LOG.debug("Start");
         add(form);
         form.add(new Label("msg", "Hello"));
-        form.add(new TextField("Name"));
-        form.add(new TextField("tel"));
-
+        form.add(uname);
+        form.add(telNo);
         LOG.debug("End");
+
 
     }
 }
