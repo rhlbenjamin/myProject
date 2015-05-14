@@ -5,13 +5,13 @@
 package com.mycompany.mavenproject1;
 
 import com.mycompany.entity.Details;
+import com.mycompany.query.EntityQueries;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  *
@@ -21,7 +21,6 @@ public class Home extends WebPage {
 
     private static Logger LOG = Logger.getLogger(Home.class);
     private static final long serialVersionUID = 1L;
-    @SpringBean
     private Details details;
 
     public Home() {
@@ -38,6 +37,9 @@ public class Home extends WebPage {
                 details.setName(uNameValue);
                 details.setTel(telNoValue);
                 LOG.debug("Name:" + details.getName() + " TelNo:" + details.getTel());
+                EntityQueries entity=new EntityQueries();
+                
+                
             }
         };
         LOG.debug("Start");

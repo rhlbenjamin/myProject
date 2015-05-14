@@ -3,6 +3,7 @@
     <persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <non-jta-data-source/>
+        <class>com.mycompany.entity.Details</class>
         <properties>
 
             <!--this propery is required to create schema-->

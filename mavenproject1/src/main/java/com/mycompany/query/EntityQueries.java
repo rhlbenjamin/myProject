@@ -4,6 +4,8 @@
  */
 package com.mycompany.query;
 
+import com.mycompany.entity.Details;
+import com.mycompany.mavenproject1.Home;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,15 +23,26 @@ public class EntityQueries {
 
     public static void main(String args[]) {
         LOG.debug("Starts... Creating Entity Manager Factory");
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("testPersistenceUnit");
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("persistenceUnit");
         LOG.debug("Created Entity Manager Factory");
         EntityManager entityManager = emFactory.createEntityManager();
+        Details service = new Details();
+        service.setName("RB");
+        service.setTel(12);
+        entityManager.getTransaction().begin();
+        entityManager.persist(service);
+
 
         Query query = entityManager.createQuery("Select d.name from Detail d");
+
         List<String> list = query.getResultList();
 
         for (String name : list) {
             LOG.debug("Name :" + name);
         }
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        emFactory.close();
     }
 }

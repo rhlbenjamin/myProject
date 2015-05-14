@@ -9,7 +9,7 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
  
-    <context:component-scan base-package="com.mycompany.entity" />
+    <context:component-scan base-package="com.mycompany" />
     <context:annotation-config />
     <tx:annotation-driven />
     <!--This is the entity manager-->
