@@ -5,7 +5,6 @@
 package com.mycompany.mavenproject1;
 
 import com.mycompany.entity.Details;
-import com.mycompany.query.EntityQueries;
 import org.apache.log4j.Logger;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -37,9 +36,6 @@ public class Home extends WebPage {
                 details.setName(uNameValue);
                 details.setTel(telNoValue);
                 LOG.debug("Name:" + details.getName() + " TelNo:" + details.getTel());
-                EntityQueries entity=new EntityQueries();
-                
-                
             }
         };
         LOG.debug("Start");

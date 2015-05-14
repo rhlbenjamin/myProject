@@ -27,13 +27,14 @@ public class EntityQueries {
         LOG.debug("Created Entity Manager Factory");
         EntityManager entityManager = emFactory.createEntityManager();
         Details service = new Details();
-        service.setName("RB");
-        service.setTel(12);
+//        service.setName("RB");
+//        service.setTel(12);
+        LOG.debug("Saving details in the db :"+service.getName());
+        LOG.debug("Saving details in the db :"+service.getTel());
         entityManager.getTransaction().begin();
         entityManager.persist(service);
 
-
-        Query query = entityManager.createQuery("Select d.name from Detail d");
+        Query query = entityManager.createQuery("Select d.Name from Details d");
 
         List<String> list = query.getResultList();
 
